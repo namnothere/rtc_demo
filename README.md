@@ -1,5 +1,7 @@
 # Interactive AIGC scenario RTC Demo
 
+Demo Online: https://demo.byteplus.com/rtc/solution/aigc
+
 ## Introduction
 - In the AIGC conversation scenario, the Volcengine AIGC - RTC Server cloud service provides an end - to - end AIGC capability link based on streaming voice by integrating RTC audio and video stream processing, ASR voice recognition, large - model interface call integration, and TTS voice generation capabilities.
 - Users only need to call the standard - based OpenAPI interfaces to configure the required ASR, LLM, and TTS types and parameters. The Volcengine cloud computing service is responsible for edge user access, cloud resource scheduling, audio and video stream compression, text - to - voice conversion processing, and data subscription and transmission. This simplifies the development process, allowing developers to focus more on the training and debugging of the core capabilities of large models, thus rapidly promoting the innovation of AIGC product applications.
@@ -13,6 +15,8 @@ This demo supports two operation modes with different configuration requirements
 Allows independent configuration of ASR, LLM, and TTS components with multiple provider options.
 
 You need to fill the following fields into `VOICE_CHAT_MODE` in `./Server/sensitive.js` according to the ASR/LLM/TTS vendor you use.
+
+Besides, if using `BytePlusArk` as `LLM Module`, you need to fill the model endpoint ID in `ArkModel` (`File`: `src/config/voiceChat/llm.ts`), which could be gain from [BytePlus Ark Console](https://console.byteplus.com/ark/region:ark+ap-southeast-1/endpoint).
 
 ```
 VOICE_CHAT_MODE
@@ -67,8 +71,10 @@ REALTIME_API_MODE
 3. **Server Configuration** (`Server/sensitive.js`)
    - **RTC Basic Configuration**: Configure `RTC_APP_KEY` if you want to auto generate token in server.
    - **API Provider Credentials**:
-     - **Flexible Mode**: Configure `ASR`, `TTS`, and `LLM` provider credentials as shown in the configuration tree above
-     - **Realtime Mode**: Only requires OpenAI `APIKey` in `LLMConfig.Token`
+     - **Flexible Mode**:
+        - Configure `ASR`, `TTS`, and `LLM` provider credentials as shown in the configuration tree above.
+        - If using `BytePlusArk` as `LLM Module`, you need to fill the model endpoint ID in `ArkModel` (`File`: `src/config/voiceChat/llm.ts`), which could be gain from [BytePlus Ark Console](https://console.byteplus.com/ark/region:ark+ap-southeast-1/endpoint).
+     - **Realtime Mode**: Only requires OpenAI `APIKey` in `LLMConfig.Token`.
 
 Refer to the configuration tree structure above for the complete list of required fields.
 
@@ -111,7 +117,7 @@ yarn dev:realtime
 ### FAQ
 | Issue | Solution |
 | :-- | :-- |
-| **After starting the AI agent, there is no response to conversation, or it keeps showing "AI preparing..."** | <li>This may be due to incomplete console permissions. Please refer to the [setup process](https://docs.byteplus.com/en/docs/byteplus-rtc/docs-1315561) to confirm all required operations are completed. This is the most likely cause, so please carefully verify that all necessary permissions have been granted.</li><li>There may be parameter issues, such as case sensitivity or type errors. Please double-check for these types of problems.</li><li>Related resources may not be enabled or there may be insufficient quota/overdue payments. Please verify again.</li><li>**Please ensure the model ID and other configurations are correct and available.**</li> |
+| **After starting the AI agent, there is no response to conversation, or it keeps showing "AI preparing..."** | <li>This may be due to incomplete console permissions. Please refer to the [setup process](https://docs.byteplus.com/en/docs/byteplus-rtc/docs-1315561) to confirm all required operations are completed. This is the most likely cause, so please carefully verify that all necessary permissions have been granted.</li><li>There may be parameter issues, such as case sensitivity or type errors. Please double-check for these types of problems.</li><li>Related resources may not be enabled or there may be insufficient quota/overdue payments. Please verify again.</li><li>**Please ensure the model ID(See `src/config/voiceChat/llm.ts`) and other configurations are correct and available.**</li> |
 | **Browser shows `Uncaught (in promise) r: token_error` error** | Please check if the RTC Token filled in your project is valid. Verify that the UserId, RoomId used to generate the Token, and the Token itself match what's configured in the project. The Token may also be expired - try regenerating it. |
 | **[StartVoiceChat]Failed(Reason: The task has been started. Please do not call the startup task interface repeatedly.)** error | If you've set fixed values for RoomId and UserId, repeatedly calling startAudioBot will cause errors. Simply call stopAudioBot first, then call startAudioBot again. |
 | Why aren't my devices working normally even though my microphone and camera are functioning? | This may be due to device permissions not being granted. Please check device permission settings. |
@@ -132,6 +138,9 @@ Refer to [OpenAPI Updates](https://docs.byteplus.com/en/docs/byteplus-rtc/docs-1
 
 ### Release Notes
 
-#### [1.4.0] 
+#### [1.4.0]
+- 2025-06-16
+    - Updated Demo guide and fixed some parameter errors.
+    - Modify the Endpoint ID of Byteplus Ark Model. which needs to be filled in by the user.
 - 2025-06-06
     - Initial Release

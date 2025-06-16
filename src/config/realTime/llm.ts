@@ -16,7 +16,7 @@ export class LLMManager {
   systemMessages = '';
 
   get value(): {
-    Provider: 'gpt-openai';
+    Provider: 'openai';
     /**
      * @note Injected by server, refer to Server/sensitive.js.
      * @refer https://platform.openai.com/api-keys
@@ -34,7 +34,7 @@ export class LLMManager {
     };
   } {
     return {
-      Provider: 'gpt-openai',
+      Provider: 'openai',
       Voice: this.voiceType,
       Instructions: this.systemMessages,
     };

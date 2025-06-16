@@ -7,34 +7,39 @@ import { Provider } from '../basic';
 import ArkSVG from '@/assets/img/Ark.svg';
 import DeepSeekSVG from '@/assets/img/DeepSeek.svg';
 
+/**
+ * @note Ark Model IDs, visit following url to find endpoint column, set model ID you want to use.
+ *       *Demo default use 'Skylark-pro', you could modify it in LLMManager.endPointId.*
+ * @refer https://console.byteplus.com/ark/region:ark+ap-southeast-1/endpoint
+ */
 export const ArkModel = {
   'Skylark-pro': {
-    endPointId: 'ep-20250410162637-pmcd6',
+    endPointId: 'Your model ID',
     description: '128k, Trial supported',
     icon: ArkSVG,
   },
   'Skylark-lite': {
-    endPointId: 'ep-20250603112522-swnmm',
+    endPointId: 'Your model ID',
     description: '32k, Trial supported',
     icon: ArkSVG,
   },
   'DeepSeek-R1｜250528': {
-    endPointId: 'ep-20250603112606-rhnx6',
+    endPointId: 'Your model ID',
     description: '32k, Trial supported',
     icon: DeepSeekSVG,
   },
   'DeepSeek-R1｜250120': {
-    endPointId: 'ep-20250603112754-sxwf6',
+    endPointId: 'Your model ID',
     description: '32k, Trial supported',
     icon: DeepSeekSVG,
   },
   'DeepSeek-V3｜250324': {
-    endPointId: 'ep-20250603112638-tcsj2',
+    endPointId: 'Your model ID',
     description: '128k, Trial supported',
     icon: DeepSeekSVG,
   },
   'Deepseek-R1-Distill-Qwen-32b｜250120': {
-    endPointId: 'ep-20250603112707-8qmlj',
+    endPointId: 'Your model ID',
     description: '32k, Trial supported',
     icon: DeepSeekSVG,
   },
@@ -77,12 +82,20 @@ export class LLMManager {
        */
       APIKey?: string;
     };
+    /**
+     * @note Demo using OpenAI as example for CustomLLM.
+     */
     [Provider.OpenAI]: {
       Mode: 'CustomLLM';
       /**
-       * @note Fixed value, `https://api.openai.com/v1/chat/completions`.
+       * @note Third part request url, like `https://api.openai.com/v1/chat/completions` for example.
+       *       - Protocol: Must support the SSE (Server-Sent Events) protocol.
+       *       - Headers: Content-Type must be text/event-stream.
+       *       - Terminator: Must contain the data: [DONE] terminator.
+       *
+       *       If need using third part API, you can contact BytePlus support team for more technical support.
        */
-      Url: 'https://api.openai.com/v1/chat/completions';
+      Url: string;
       /**
        * @refer https://platform.openai.com/docs/models#tts
        */
