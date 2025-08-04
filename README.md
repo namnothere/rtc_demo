@@ -24,8 +24,13 @@ VOICE_CHAT_MODE
 │   ├── amazon
 │   │   ├── ID (Access Key ID)
 │   │   └── Secret (Secret Access Key)
-│   └── google
-│       └── CredentialsJSON (Service Account JSON)
+│   ├── google
+│   │   └── CredentialsJSON (Service Account JSON)
+│   └── BytePlus
+│       ├── AppId (BytePlus ASR App ID)
+│       ├── AccessToken (BytePlus ASR Access Token)
+│       └── ApiResourceId (Service Plan Type)
+
 │
 ├── TTSConfig (Text-to-Speech)
 │   ├── byteplus_Bidirectional_streaming
