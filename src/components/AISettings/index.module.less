@@ -140,7 +140,6 @@
         position: relative;
         min-height: calc(100% - 300px);
         width: 100%;
-        height: 100%;
         background: white;
         box-sizing: border-box;
         padding: 32px 24px;
@@ -150,6 +149,13 @@
         display: flex;
         flex-direction: column;
         gap: 24px;
+
+        .prompt {
+            min-height: 150px;
+        }
+        .welcomeSpeech {
+            min-height: 80px;
+        }
 
         .anchor {
             position: absolute;

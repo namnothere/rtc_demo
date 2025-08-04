@@ -207,17 +207,17 @@ function AISettings() {
         </div>
         <div className={styles.configuration}>
           <AnchorTitle content="Character setting" />
-          <TitleCard title="Prompt">
+          <TitleCard title="Prompt" className={styles.prompt}>
             <Input.TextArea
-              autoSize
+              autoSize={{ minRows: 1, maxRows: 6 }}
               placeholder="prompt"
               value={data.SystemMessages?.[0]}
               onChange={propsChangedHandler('SystemMessages', (val) => [val])}
             />
           </TitleCard>
-          <TitleCard title="Welcome speech">
+          <TitleCard title="Welcome speech" className={styles.welcomeSpeech}>
             <Input.TextArea
-              autoSize
+              autoSize={{ minRows: 1, maxRows: 3 }}
               placeholder="welcome speech"
               value={data.WelcomeMessage}
               onChange={propsChangedHandler('WelcomeMessage')}
@@ -270,7 +270,7 @@ function AISettings() {
               <CheckBoxSelector
                 label="ASR Vendor"
                 // no goole yet: Provider.Google
-                data={formatOptions([Provider.Amazon])}
+                data={formatOptions([Provider.Byteplus, Provider.Amazon])}
                 onChange={propsChangedHandler('Provider.ASR')}
                 value={data['Provider.ASR']}
                 moreProps={{

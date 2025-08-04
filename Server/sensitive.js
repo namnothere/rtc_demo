@@ -60,6 +60,24 @@ const VOICE_CHAT_MODE = {
          */
         CredentialsJSON: 'Your Credentials JSON',
       },
+      BytePlus: {
+        /**
+         * @note The AppId obtained on BytePlus ASR Console, used to identify the application.
+         * @refer https://console.byteplus.com/voice/service/1000017
+         */
+        AppId: 'Your AppId',
+        /**
+         * @brief AccessToken obtained on BytePlus ASR Console, used for authentication.
+         * @refer https://console.byteplus.com/voice/service/1000017
+         */
+        AccessToken: 'Your AccessToken',
+        /**
+         * @brief The service plan type for the BytePlus ASR Model.
+         * @note Fixed to volc.bigasr.sauc.duration
+         * @refer https://docs.byteplus.com/en/docs/byteplus-rtc/docs-1558163#byteplusasr
+         */
+        ApiResourceId: 'volc.bigasr.sauc.duration',
+      },
     },
   },
   TTSConfig: {
@@ -119,6 +137,14 @@ const VOICE_CHAT_MODE = {
       APIKey: 'Your API Key',
     },
   },
+  // SubtitleConfig: {
+  //   /**
+  //    * @brief Subtitle callback configuration.
+  //    * @note Callbacks can be received through the client or server. The message format is binary and needs to be parsed before use. For detailed instructions, see Real-time Subtitles.
+  //    * @refer https://docs.byteplus.com/en/docs/byteplus-rtc/docs-1558163#byteplusasr
+  //    */
+  //   SubtitleMode: 0,
+  // },
 };
 
 /**
@@ -158,6 +184,12 @@ const injectSensitiveInfo = (body, isVoiceChatMode) => {
       body.Config.LLMConfig = merge(
         body.Config?.LLMConfig,
         VOICE_CHAT_MODE.LLMConfig[body.Config?.LLMConfig?.Mode]
+      );
+    }
+    if (body?.Config?.SubtitleConfig) {
+      body.Config.SubtitleConfig = merge(
+        body.Config?.SubtitleConfig,
+        VOICE_CHAT_MODE.SubtitleConfig
       );
     }
   } else {

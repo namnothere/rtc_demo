@@ -139,6 +139,12 @@ Refer to [OpenAPI Updates](https://docs.byteplus.com/en/docs/byteplus-rtc/docs-1
 ### Release Notes
 
 #### [1.4.0]
+- 2025-08-04
+    - Upgrade SDK version to 4.67.2
+    - Support BytePlus ASR（Speech-to-Text (ASR) - Streaming）
+    - fix AI Settings UI
+- 2025-07-08
+    - Upgrade SDK version to 4.66.20 
 - 2025-06-16
     - Updated Demo guide and fixed some parameter errors.
     - Modify the Endpoint ID of Byteplus Ark Model. which needs to be filled in by the user.

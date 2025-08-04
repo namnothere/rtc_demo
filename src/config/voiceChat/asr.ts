@@ -11,7 +11,7 @@ import { Provider } from '../basic';
  *       Some sensitive fields not provided in frontend were injected by the server (See: Server/sensitive.js).
  */
 export class ASRManager {
-  provider: Provider.Amazon | Provider.Google;
+  provider: Provider.Amazon | Provider.Google | Provider.Byteplus;
 
   #paramsMap: {
     [Provider.Amazon]: {
@@ -50,10 +50,46 @@ export class ASRManager {
        */
       CredentialsJSON?: string;
     };
+    [Provider.Byteplus]: {
+      Provider: 'BytePlus';
+      ProviderParams: {
+        /**
+         * @brief The model type.
+         * @note This parameter is fixed to SeedASR, indicating the BytePlus ASR model (Speech-to-Text (ASR) - Streaming).
+         * @refer https://docs.byteplus.com/en/docs/byteplus-rtc/docs-1558163#byteplusasr
+         */
+        Mode: 'SeedASR';
+        /**
+         * @refer https://docs.byteplus.com/en/docs/byteplus-rtc/docs-1558163#byteplusasr
+         */
+        Language?: 'zh-CN' | 'en-US';
+        /**
+         * @brief APP ID obtained on BytePlus ASR Console, used to identify the application.
+         * @refer https://console.byteplus.com/voice/service/1000017
+         */
+        AppId?: string;
+        /**
+         * @brief AccessToken obtained on BytePlus ASR Console, used for authentication.
+         * @refer https://console.byteplus.com/voice/service/1000017
+         */
+        AccessToken?: string;
+        /**
+         * @brief The service plan type for the BytePlus ASR Model.
+         * @note Fixed to volc.bigasr.sauc.duration
+         * @refer https://docs.byteplus.com/en/docs/byteplus-rtc/docs-1558163#byteplusasr
+         */
+        ApiResourceId?: string;
+        /**
+         * @brief The output mode for ASR results:
+         * @refer https://docs.byteplus.com/en/docs/byteplus-rtc/docs-1558163#byteplusasr
+         */
+        StreamMode: number;
+      };
+    };
   };
 
   constructor() {
-    this.provider = Provider.Amazon;
+    this.provider = Provider.Byteplus;
     this.#paramsMap = {
       [Provider.Amazon]: {
         Provider: Provider.Amazon,
@@ -64,6 +100,14 @@ export class ASRManager {
       },
       [Provider.Google]: {
         Language: 'en-US',
+      },
+      [Provider.Byteplus]: {
+        Provider: 'BytePlus',
+        ProviderParams: {
+          Mode: 'SeedASR',
+          StreamMode: 0,
+          Language: 'zh-CN',
+        },
       },
     };
   }
