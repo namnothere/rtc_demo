@@ -3,17 +3,18 @@
  * SPDX-license-identifier: BSD-3-Clause
  */
 const merge = require('lodash/merge');
+require('dotenv').config();
 
 /**
  * @note Not required, if you invoke getSessionToken to generate sessionToken, you should fill it.
  * @refer https://console.byteplus.com/user/basics/
  */
-const ACCOUNT_ID = '3000631366';
+const ACCOUNT_ID = process.env.ACCOUNT_ID;
 
 /**
  * @note Not required, if you invoke getSessionToken to generate sessionToken, you should fill it.
  */
-const SUB_ACCOUNT_NAME = 'Your Sub Account Name';
+const SUB_ACCOUNT_NAME = process.env.SUB_ACCOUNT_NAME;
 
 /**
  * @note Sign up for AK/SK.
@@ -23,18 +24,18 @@ const ACCOUNT_INFO = {
   /**
    * @note Required, get from https://console.byteplus.com/iam/keymanage
    */
-  accessKeyId: 'AKAPNDgxNzMyMzU4NDFjNGI4ZWFhMDU3YTczMzQ5Njk4Y2I',
+  accessKeyId: process.env.ACCESS_KEY_ID,
   /**
    * @note Required, get from https://console.byteplus.com/iam/keymanage
    */
-  secretKey: 'TlRreE5XWTVPV001WkdZMU5HVTFZMkl3TXpReE5UVm1PR1pqTVRJd1pqSQ==',
+  secretKey: process.env.SECRET_KEY,
 };
 
 /**
  * @brief RTC AppKey
  * @refer https://console.byteplus.com/rtc/listRTC
  */
-const RTC_APP_KEY = '9e211b809be242dc8d766633cfdf6e90';
+const RTC_APP_KEY = process.env.RTC_APP_KEY;
 
 /**
  * @brief Sensitive fields in Flexible Mode (VoiceChat Mode).
@@ -47,36 +48,36 @@ const VOICE_CHAT_MODE = {
          * @note Amazon Access key ID. For detail, see Create new access keys for an IAM user.
          * @refer https://docs.aws.amazon.com/keyspaces/latest/devguide/create.keypair.html
          */
-        ID: 'Your ID',
+        ID: process.env.AMAZON_ASR_ID,
         /**
          * @note Amazon Secret access key. For detail, see Create new access keys for an IAM user.
          * @refer https://docs.aws.amazon.com/keyspaces/latest/devguide/create.keypair.html
          */
-        Secret: 'Your Secret',
+        Secret: process.env.AMAZON_ASR_SECRET,
       },
       google: {
         /**
          * @refer https://cloud.google.com/docs/authentication/application-default-credentials#GAC
          */
-        CredentialsJSON: 'Your Credentials JSON',
+        CredentialsJSON: process.env.GOOGLE_ASR_CREDENTIALS_JSON,
       },
       BytePlus: {
         /**
          * @note The AppId obtained on BytePlus ASR Console, used to identify the application.
          * @refer https://console.byteplus.com/voice/service/1000017
          */
-        AppId: '6299034879',
+        AppId: process.env.BYTEPLUS_ASR_APP_ID,
         /**
          * @brief AccessToken obtained on BytePlus ASR Console, used for authentication.
          * @refer https://console.byteplus.com/voice/service/1000017
          */
-        AccessToken: 'IvMTMec6kw6xuIBmCK4G8NcDRmItYEB5',
+        AccessToken: process.env.BYTEPLUS_ASR_ACCESS_TOKEN,
         /**
          * @brief The service plan type for the BytePlus ASR Model.
          * @note Fixed to volc.bigasr.sauc.duration
          * @refer https://docs.byteplus.com/en/docs/byteplus-rtc/docs-1558163#byteplusasr
          */
-        ApiResourceId: 'volc.bigasr.sauc.duration',
+        ApiResourceId: process.env.BYTEPLUS_ASR_API_RESOURCE_ID,
       },
     },
   },
@@ -88,12 +89,12 @@ const VOICE_CHAT_MODE = {
            * @note App ID obtained on BytePlus Text-to-Speech Console, used to identify the application.
            * @refer https://console.byteplus.com/voice/service/1000014?
            */
-          appid: '6299034879',
+          appid: process.env.BYTEPLUS_TTS_APP_ID,
           /**
            * @note The Access Token corresponding to the App ID of Text-to-Speech service, used for identity authentication. You can obtain it by on BytePlus Text-to-Speech Console.
            * @refer https://console.byteplus.com/voice/service/1000014?
            */
-          token: 'IvMTMec6kw6xuIBmCK4G8NcDRmItYEB5',
+          token: process.env.BYTEPLUS_TTS_TOKEN,
         },
       },
       amazon: {
@@ -101,24 +102,24 @@ const VOICE_CHAT_MODE = {
          * @note Amazon Access key ID. For detail, see Create new access keys for an IAM user.
          * @refer https://docs.aws.amazon.com/keyspaces/latest/devguide/create.keypair.html
          */
-        ID: 'Your ID',
+        ID: process.env.AMAZON_TTS_ID,
         /**
          * @note Amazon Secret access key. For detail, see Create new access keys for an IAM user.
          * @refer https://docs.aws.amazon.com/keyspaces/latest/devguide/create.keypair.html
          */
-        Secret: 'Your Secret',
+        Secret: process.env.AMAZON_TTS_SECRET
       },
       openai: {
         /**
          * @note Fixed to the value: https://api.openai.com/v1/audio/speech
-         * @example https://api.openai.com/v1/audio/speech
+         * @example https://api.openlai.com/v1/audio/speech
          */
-        URL: 'Your OpenAI URL',
+        URL: process.env.OPENAI_TTS_URL,
         /**
          * @note APIKey. Acquire on api-keys.
          * @refer https://platform.openai.com/api-keys
          */
-        APIKey: 'Your OpenAI API Key',
+        APIKey: process.env.OPENAI_TTS_API_KEY,
       },
     },
   },
@@ -127,14 +128,14 @@ const VOICE_CHAT_MODE = {
       /**
        * @brief APIKey, acquire on https://platform.openai.com/api-keys
        */
-      APIKey: 'Your API Key',
+      APIKey: process.env.OPENAI_LLM_API_KEY,
     },
     BytePlusArk: {
       /**
        * @note APIKey. Acquire on View API Key.
        * @refer https://console.byteplus.com/ark/region:ark+ap-southeast-1/endpoint?config=%7B%7D
        */
-      APIKey: '3a1a1148-7b97-4df3-ba6b-093aa8887b4b',
+      APIKey: process.env.BYTEPLUS_LLM_API_KEY,
     },
   },
   // SubtitleConfig: {
@@ -156,7 +157,7 @@ const REALTIME_API_MODE = {
      * @brief API key of OpenAI.
      * @refer https://platform.openai.com/api-keys
      */
-    Token: 'Your OpenAI Token',
+    Token: process.env.OPENAI_REALTIME_TOKEN,
   },
 };
 
