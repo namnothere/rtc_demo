@@ -26,20 +26,20 @@ export class ConfigFactory {
    * @note RTC RoomId
    *       You can use uuid() for random generation or customize it.
    */
-  RoomId = uuid();
+  RoomId = '1';
 
   /**
    * @note RTC UserId
    *       You can use uuid() for random generation or customize it.
    */
-  UserId = uuid();
+  UserId = 'user';
 
   /**
    * @note RTC Access Token
    *       You can generate it manually in the console for testing.
    *       Or leave it undefined, demo will generate it automatically by calling api (in src/lib/useCommon.ts), and this require your RTC_APP_KEY in /Server/sensitve.js.
    */
-  Token = undefined;
+  Token = '00168a2de3d64964f01752706faOwBzKyED7m6oaG6psWgBADEEAHVzZXIGAAAAbqmxaAEAbqmxaAIAbqmxaAMAbqmxaAQAbqmxaAUAbqmxaCAAf98Wl0hnX+Fq8JdMuEJnx6iu7+t4h5jJuTUfd3rKyFA=';
 
   BotName = 'RobotMan_';
 
