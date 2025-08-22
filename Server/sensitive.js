@@ -8,7 +8,7 @@ const merge = require('lodash/merge');
  * @note Not required, if you invoke getSessionToken to generate sessionToken, you should fill it.
  * @refer https://console.byteplus.com/user/basics/
  */
-const ACCOUNT_ID = 'Your Account ID';
+const ACCOUNT_ID = '3000631366';
 
 /**
  * @note Not required, if you invoke getSessionToken to generate sessionToken, you should fill it.
@@ -23,18 +23,18 @@ const ACCOUNT_INFO = {
   /**
    * @note Required, get from https://console.byteplus.com/iam/keymanage
    */
-  accessKeyId: 'Your Access Key ID',
+  accessKeyId: 'AKAPNDgxNzMyMzU4NDFjNGI4ZWFhMDU3YTczMzQ5Njk4Y2I',
   /**
    * @note Required, get from https://console.byteplus.com/iam/keymanage
    */
-  secretKey: 'Your Secret Key',
+  secretKey: 'TlRreE5XWTVPV001WkdZMU5HVTFZMkl3TXpReE5UVm1PR1pqTVRJd1pqSQ==',
 };
 
 /**
  * @brief RTC AppKey
  * @refer https://console.byteplus.com/rtc/listRTC
  */
-const RTC_APP_KEY = 'Your RTC AppKey';
+const RTC_APP_KEY = '9e211b809be242dc8d766633cfdf6e90';
 
 /**
  * @brief Sensitive fields in Flexible Mode (VoiceChat Mode).
@@ -65,12 +65,12 @@ const VOICE_CHAT_MODE = {
          * @note The AppId obtained on BytePlus ASR Console, used to identify the application.
          * @refer https://console.byteplus.com/voice/service/1000017
          */
-        AppId: 'Your AppId',
+        AppId: '6299034879',
         /**
          * @brief AccessToken obtained on BytePlus ASR Console, used for authentication.
          * @refer https://console.byteplus.com/voice/service/1000017
          */
-        AccessToken: 'Your AccessToken',
+        AccessToken: 'IvMTMec6kw6xuIBmCK4G8NcDRmItYEB5',
         /**
          * @brief The service plan type for the BytePlus ASR Model.
          * @note Fixed to volc.bigasr.sauc.duration
@@ -88,12 +88,12 @@ const VOICE_CHAT_MODE = {
            * @note App ID obtained on BytePlus Text-to-Speech Console, used to identify the application.
            * @refer https://console.byteplus.com/voice/service/1000014?
            */
-          appid: 'Your App ID',
+          appid: '6299034879',
           /**
            * @note The Access Token corresponding to the App ID of Text-to-Speech service, used for identity authentication. You can obtain it by on BytePlus Text-to-Speech Console.
            * @refer https://console.byteplus.com/voice/service/1000014?
            */
-          token: 'Your Access Token',
+          token: 'IvMTMec6kw6xuIBmCK4G8NcDRmItYEB5',
         },
       },
       amazon: {
@@ -134,7 +134,7 @@ const VOICE_CHAT_MODE = {
        * @note APIKey. Acquire on View API Key.
        * @refer https://console.byteplus.com/ark/region:ark+ap-southeast-1/endpoint?config=%7B%7D
        */
-      APIKey: 'Your API Key',
+      APIKey: '3a1a1148-7b97-4df3-ba6b-093aa8887b4b',
     },
   },
   // SubtitleConfig: {

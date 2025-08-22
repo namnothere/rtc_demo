@@ -14,7 +14,7 @@ import DeepSeekSVG from '@/assets/img/DeepSeek.svg';
  */
 export const ArkModel = {
   'Skylark-pro': {
-    endPointId: 'Your model ID',
+    endPointId: 'ep-m-20250822032906-zlmmh',
     description: '128k, Trial supported',
     icon: ArkSVG,
   },
@@ -24,7 +24,7 @@ export const ArkModel = {
     icon: ArkSVG,
   },
   'DeepSeek-R1｜250528': {
-    endPointId: 'Your model ID',
+    endPointId: 'deepseek-r1-250528',
     description: '32k, Trial supported',
     icon: DeepSeekSVG,
   },

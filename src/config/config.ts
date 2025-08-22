@@ -20,7 +20,7 @@ export class ConfigFactory {
    * @note AppId of the RTC
    * @refer https://docs.byteplus.com/en/docs/byteplus-rtc/docs-69865#step-3-create-a-byteplus-rtc-app-and-get-the-appid
    */
-  AppId = 'Your AppId';
+  AppId = '68a2de3d64964f01752706fa';
 
   /**
    * @note RTC RoomId
