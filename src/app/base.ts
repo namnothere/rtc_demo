@@ -62,6 +62,7 @@ export const requestPostMethod = (
   headers: Headers = {}
 ) => {
   return async <T>(params: T) => {
+    console.log(AIGC_PROXY_HOST);
     const res = await fetch(`${AIGC_PROXY_HOST}${apiPath}?action=${actionName}`, {
       method: 'post',
       headers: {

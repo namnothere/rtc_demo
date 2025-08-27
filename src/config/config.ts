@@ -2,7 +2,7 @@
  * Copyright 2025 Beijing Volcano Engine Technology Co., Ltd. All Rights Reserved.
  * SPDX-license-identifier: BSD-3-Clause
  */
-import { v4 as uuid } from 'uuid';
+// import { v4 as uuid } from 'uuid';
 import { isRealTimeCallMode } from '@/app/base';
 import { PROMPT } from '.';
 import { RealTimeConfig } from './realTime';
@@ -39,7 +39,8 @@ export class ConfigFactory {
    *       You can generate it manually in the console for testing.
    *       Or leave it undefined, demo will generate it automatically by calling api (in src/lib/useCommon.ts), and this require your RTC_APP_KEY in /Server/sensitve.js.
    */
-  Token = '00168a2de3d64964f01752706faOwBzKyED7m6oaG6psWgBADEEAHVzZXIGAAAAbqmxaAEAbqmxaAIAbqmxaAMAbqmxaAQAbqmxaAUAbqmxaCAAf98Wl0hnX+Fq8JdMuEJnx6iu7+t4h5jJuTUfd3rKyFA=';
+  Token =
+    '00168a2de3d64964f01752706faOwBzKyED7m6oaG6psWgBADEEAHVzZXIGAAAAbqmxaAEAbqmxaAIAbqmxaAMAbqmxaAQAbqmxaAUAbqmxaCAAf98Wl0hnX+Fq8JdMuEJnx6iu7+t4h5jJuTUfd3rKyFA=';
 
   BotName = 'RobotMan_';
 

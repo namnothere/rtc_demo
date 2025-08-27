@@ -12,10 +12,12 @@ import GoogleSVG from '@/assets/img/Google.svg';
 import AmazonSVG from '@/assets/img/Amazon.svg';
 import ArkSVG from '@/assets/img/Ark.svg';
 
-export const getEnvDomain = () => 'http://localhost:3001';
+export const getEnvDomain = () => process.env.REACT_APP_AIGC_PROXY_HOST;
+// export const getEnvDomain = () => 'http://localhost:3001';
 
 export const AIGC_PROXY_HOST = getEnvDomain();
-
+console.log('AIGC_PROXY_HOST', AIGC_PROXY_HOST);
+console.log('process.env.NODE_ENV', process.env.REACT_APP_BASE_URL);
 export const VendorSVG = {
   [Provider.Amazon]: AmazonSVG,
   [Provider.Google]: GoogleSVG,
@@ -89,11 +91,7 @@ export const PopoverContent = {
   [CALL_TYPE.VOICE_CHAT]: 'Flexible combination of ASR, TTS and LLM vendors.',
 };
 
-export const Questions = [
-  'How to stay healthy?',
-  'Can you tell me a story?',
-  'What is the meaning of life?',
-];
+export const Questions = ['How the weather in Saigon?'];
 
 const factory = new ConfigFactory();
 
