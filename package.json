@@ -19,7 +19,7 @@
     "dev": "npm run dev:realtime",
     "dev:server": "node ./Server/app.js",
     "dev:realtime": "npm run echo && cross-env REACT_APP_MODE=realtime REACT_APP_AIGC_PROXY_HOST=https://api.immergreen.cc/api/v1/rtc craco start",
-    "dev:flexible": "npm run echo && cross-env REACT_APP_MODE=flexible REACT_APP_AIGC_PROXY_HOST=https://api.immergreen.cc/api/v1/rtc craco start",
+    "dev:flexible": "npm run echo && cross-env REACT_APP_MODE=flexible craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",

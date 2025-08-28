@@ -13,7 +13,7 @@ import {
 } from '@/store/slices/room';
 import RtcClient from '@/lib/RtcClient';
 import Utils from '@/utils/utils';
-import config from '@/config';
+import config, { AIGC_PROXY_HOST } from '@/config';
 
 export type AnyRecord = Record<string, any>;
 
@@ -120,25 +120,55 @@ export const useMessageHandler = () => {
         }
       }
     },
-    [MESSAGE_TYPE.FUNCTION_CALL]: (parsed: AnyRecord) => {
-      const name: string = parsed?.tool_calls?.[0]?.function?.name;
-      console.log('[Function Call] - Called by sendUserBinaryMessage');
-      const map: Record<string, string> = {
-        getcurrentweather: "It's snowing today, minimum temperature is -10 degrees",
-        musicplayer: 'Found Li Si\'s song, title is "Thousands of Miles Away"',
-        sendmessage: 'Sent successfully',
-      };
+    [MESSAGE_TYPE.FUNCTION_CALL]: async (parsed: AnyRecord) => {
+      const toolCall = parsed?.tool_calls?.[0] || {};
+      const name: string = toolCall?.function?.name;
+      const toolCallId: string = toolCall?.id;
 
-      RtcClient.engine.sendUserBinaryMessage(
-        config.BotName,
-        Utils.string2tlv(
-          JSON.stringify({
-            ToolCallID: parsed?.tool_calls?.[0]?.id,
-            Content: map[name.toLocaleLowerCase().replaceAll('_', '')],
-          }),
-          'func'
-        )
-      );
+      let parameters: any = {};
+      try {
+        const args = toolCall?.function?.arguments;
+        parameters = typeof args === 'string' ? JSON.parse(args || '{}') : args || {};
+      } catch (e) {
+        logger.debug('parse function arguments error', e);
+      }
+
+      let content = '';
+      try {
+        const res = await fetch(`${AIGC_PROXY_HOST}/tool/fc`, {
+          method: 'post',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({ name, parameters }),
+        });
+
+        // Prefer text; if JSON, stringify for transport
+        const text = await res.text();
+        try {
+          const maybeJson = JSON.parse(text);
+          content = typeof maybeJson === 'string' ? maybeJson : JSON.stringify(maybeJson);
+        } catch (_) {
+          content = text;
+        }
+      } catch (error: any) {
+        content = `Function call failed: ${error?.message || 'unknown error'}`;
+      }
+
+      try {
+        RtcClient.engine.sendUserBinaryMessage(
+          config.BotName,
+          Utils.string2tlv(
+            JSON.stringify({
+              ToolCallID: toolCallId,
+              Content: content,
+            }),
+            'func'
+          )
+        );
+      } catch (e) {
+        logger.debug('sendUserBinaryMessage error', e);
+      }
     },
   };
 
